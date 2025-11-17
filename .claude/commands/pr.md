@@ -5,7 +5,7 @@ args: "[base_branch]"
 
 # Pull Request作成
 
-変更内容を分析して、日本語で適切なPull Requestを作成します。
+現在のブランチから指定のベースブランチへのPRを、日本語で適切に作成します。
 
 ## 使い方
 
@@ -13,16 +13,24 @@ args: "[base_branch]"
 /pr [base_branch]
 ```
 
+**引数**:
+- `base_branch` (オプション): マージ先のベースブランチ名
+  - 省略時は自動検出: `gh repo view --json defaultBranchRef` または `git symbolic-ref refs/remotes/origin/HEAD`
+  - 検出できない場合はmainを使用
+
 ## 例
 
-- `/pr` - mainブランチへのPR作成
-- `/pr develop` - developブランチへのPR作成
+- `/pr` - 現在のブランチ → デフォルトブランチ（自動検出）へのPR作成
+- `/pr develop` - 現在のブランチ → develop へのPR作成
+- `/pr staging` - 現在のブランチ → staging へのPR作成
 
 ## 実行内容
 
-1. `git diff` と `git status` で変更内容を分析
-2. 以下のテンプレートに沿ってPR文を生成
-3. `gh pr create` コマンド用の文章を出力
+1. 現在のブランチを確認（これがPRのソースブランチになります）
+2. `git diff [base_branch]...HEAD` で変更内容を分析
+3. `git log [base_branch]..HEAD` でコミット履歴を確認
+4. 以下のテンプレートに沿ってPR本文を生成
+5. `gh pr create --base [base_branch]` コマンドの実行方法を提示
 
 ## PRテンプレート構造
 
@@ -71,10 +79,20 @@ args: "[base_branch]"
 
 ## 私が実行すること
 
-1. 現在のブランチと変更ファイルを確認
-2. コミット履歴から変更の意図を分析
-3. 影響範囲を判定（変更ファイルから自動推定）
-4. PR本文を日本語で生成
-5. `gh pr create` コマンドの実行方法を提示
+1. **現在のブランチ確認**: `git branch --show-current` でソースブランチを特定
+2. **ベースブランチ決定**:
+   - 引数が指定されていればそれを使用
+   - 省略時は以下の順で検出を試行:
+     - `gh repo view --json defaultBranchRef -q .defaultBranchRef.name` (GitHub CLI)
+     - `git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'`
+     - フォールバック: `main`
+3. **変更内容分析**: `git diff [base]...HEAD` で差分を確認
+4. **コミット履歴分析**: `git log [base]..HEAD` から変更意図を読み取る
+5. **影響範囲判定**: 変更ファイルから自動推定（フロントエンド/バックエンド等）
+6. **PR本文生成**: 日本語テンプレートに沿って本文を作成
+7. **コマンド提示**: `gh pr create --base [base_branch]` の実行方法を提示
 
-Target branch: ${1:-main}
+**注意**: このコマンドは現在のブランチからベースブランチへのPRを作成します。
+デフォルトブランチ（main/master等）で実行した場合は、適切なfeatureブランチに切り替えてから実行してください。
+
+Base branch: ${1:-<auto-detect>}

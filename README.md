@@ -118,9 +118,13 @@ Claude Codeでの開発ワークフローを劇的に効率化する専門サブ
 **使用例**:
 
 ```bash
-/pr                  # mainブランチへのPR作成
-/pr develop          # developブランチへのPR作成
+/pr                  # 現在のブランチ → デフォルトブランチ（自動検出）へのPR作成
+/pr develop          # 現在のブランチ → develop へのPR作成
+/pr staging          # 現在のブランチ → staging へのPR作成
 ```
+
+**注意**: 現在のブランチがソースブランチとなります。デフォルトブランチで実行しないようご注意ください。
+ベースブランチ省略時は`gh`コマンドまたはgit設定から自動検出します（main/master等）。
 
 **テンプレート特徴**:
 
@@ -636,7 +640,7 @@ ls -la .claude/agents/
 **`/pr` コマンド**:
 
 ```bash
-/pr                            # mainブランチへのPR作成
+/pr                            # デフォルトブランチへのPR作成（自動検出）
 /pr develop                    # developブランチへのPR作成
 ```
 
