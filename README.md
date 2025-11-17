@@ -1,10 +1,24 @@
-# Claude Code 開発効率化サブエージェント集
+# Claude Code 開発効率化ツールキット
 
-Claude Codeでの開発ワークフローを劇的に効率化する専門サブエージェントコレクション
+Claude Codeでの開発ワークフローを劇的に効率化する専門サブエージェントとスラッシュコマンドのコレクション
 
 ## 🎯 プロジェクト概要
 
-このプロジェクトは、Claude Codeを使った開発を高速化・高品質化するための専門サブエージェント群です。各エージェントは単一責任原則に基づいて設計され、特定の開発タスクに特化した支援を提供します。
+このプロジェクトは、Claude Codeを使った開発を高速化・高品質化するためのツールキットです。**効率的なスラッシュコマンド**と**専門的なサブエージェント**を組み合わせることで、最適な開発体験を提供します。
+
+### 💡 ハイブリッドアプローチ
+
+**スラッシュコマンド（単純・高速なタスク）:**
+
+- トークン使用量を約90%削減
+- 定型的な作業に最適
+- コードフォーマット、コミットメッセージ生成、PR/Issue作成など
+
+**サブエージェント（複雑・専門的なタスク）:**
+
+- 深い分析と判断が必要な作業
+- コードレビュー、セキュリティ監査、アーキテクチャ設計など
+- 専門領域に特化した高度な支援
 
 ### 🚀 効果
 
@@ -12,18 +26,140 @@ Claude Codeでの開発ワークフローを劇的に効率化する専門サブ
 - **コード品質向上**: セキュリティ監査、リファクタリング提案、コードレビュー
 - **チーム標準化**: 一貫したコミットメッセージ、API設計パターン
 - **専門特化支援**: フロントエンド/バックエンド特化、パフォーマンス最適化、データベース設計
+- **コスト削減**: トークン使用量90%削減（単純タスク）
 
 ## 目次
 
+- [スラッシュコマンド](#スラッシュコマンド)
+  - [コード品質・ドキュメント](#コード品質ドキュメント)
+  - [GitHub連携（日本語）](#github連携日本語)
 - [サブエージェント一覧](#サブエージェント一覧)
   - [Phase 1: 必須・高インパクト エージェント](#phase-1-必須高インパクト-エージェント)
   - [Phase 2: セキュリティ・アーキテクチャ エージェント](#phase-2-セキュリティアーキテクチャ-エージェント)
   - [Phase 3: 専門特化エージェント](#phase-3-専門特化エージェント)
+  - [Phase 4: ビジネス・UXエージェント](#phase-4-ビジネスuxエージェント)
 - [セットアップ・使用方法](#セットアップ使用方法)
 - [エージェント選択ガイドライン](#エージェント選択ガイドライン)
 - [使用例とベストプラクティス](#使用例とベストプラクティス)
 - [統合手順](#統合手順)
 - [効果測定指標](#効果測定指標)
+
+## ⚡ スラッシュコマンド
+
+真のカスタムスラッシュコマンドによる高速・低コストな開発支援
+
+### コード品質・ドキュメント
+
+#### `/format` - コードフォーマッター
+
+**機能**: 複数言語対応の自動コード整形
+
+- JavaScript/TypeScript (Prettier + ESLint)
+- Python (Black + isort)
+- Markdown (markdownlint準拠)
+- JSON/YAML 構造化フォーマット
+
+**使用例**:
+
+```bash
+/format              # 全ファイルをフォーマット
+/format *.md         # Markdownファイルのみ
+/format src/         # srcディレクトリ内を整形
+```
+
+**効果**: トークン使用量を従来比90%削減
+
+#### `/commit` - コミットメッセージ生成
+
+**機能**: Conventional Commits準拠のメッセージ自動生成
+
+- 変更内容の自動分析
+- 適切なtype・scopeの判定
+- プロフェッショナルなスタイル
+- Claude署名なし（開発者自身が書いたように）
+
+**使用例**:
+
+```bash
+/commit              # staged changesから自動生成
+```
+
+**効果**: コミット履歴の一貫性向上、トークン使用量90%削減
+
+#### `/docs` - ドキュメント生成
+
+**機能**: 構造化されたドキュメント作成
+
+- README、API仕様書、セットアップガイド
+- 標準的な文書構造に準拠
+- Markdown品質標準対応
+
+**使用例**:
+
+```bash
+/docs readme         # README.md生成
+/docs api user-service  # API文書作成
+/docs guide setup    # セットアップガイド作成
+```
+
+### GitHub連携（日本語）
+
+#### `/pr` - Pull Request作成
+
+**機能**: 日本語で適切なPR文を生成
+
+日本企業のベストプラクティスに基づいたテンプレート:
+
+- ✅ 変更内容の明確な説明
+- ✅ 「やらなかったこと」セクション（レビュアーの疑問を事前解消）
+- ✅ 影響範囲のチェックボックス
+- ✅ 技術判断の理由を将来のために記録
+
+**使用例**:
+
+```bash
+/pr                  # mainブランチへのPR作成
+/pr develop          # developブランチへのPR作成
+```
+
+**テンプレート特徴**:
+
+- HTMLコメントでガイダンス提供
+- 削除する文字を最小化（ユーザー負担軽減）
+- デプロイ時の注意事項セクション
+- レビュワーへの明確な指示
+
+#### `/issue` - Issue作成
+
+**機能**: 日本語でバグ報告・機能要望Issue作成
+
+**バグ報告**:
+
+- 再現手順の構造化
+- 影響度の視覚化（絵文字インジケーター）
+- 環境情報の体系的収集
+- 発生頻度の明記
+
+**機能要望**:
+
+- ビジネスインパクト評価
+- 必須要件vs希望要件の分離
+- ユースケースの明確化
+- 実装優先度の提案
+
+**使用例**:
+
+```bash
+/issue bug           # バグ報告Issue作成
+/issue feature       # 機能要望Issue作成
+/issue               # 対話形式で選択
+```
+
+**効果**:
+
+- 情報粒度の統一（ラクス社の知見）
+- レビュアー負担の軽減（ラブグラフ社の実践）
+- 将来の開発者のための「なぜ」の記録
 
 ## 📦 サブエージェント一覧
 
@@ -50,28 +186,6 @@ Claude Codeでの開発ワークフローを劇的に効率化する専門サブ
 - デバッグ戦略立案
 
 **使用タイミング**: エラー発生時、予期しない動作時、パフォーマンス問題時
-
-#### 📚 documentation-generator (Sonnet)
-
-**専門分野**: ドキュメント生成
-
-- README、API仕様書、コードコメント
-- OpenAPI/Swagger対応
-- 技術文書・使用例の自動生成
-- オンボーディング資料作成
-
-**使用タイミング**: 新プロジェクト開始時、API作成時、ドキュメント更新時
-
-#### 💬 commit-message-generator (Haiku)
-
-**専門分野**: コミットメッセージ作成
-
-- Conventional Commits準拠
-- 変更内容の適切な分類とスコープ検出
-- git履歴の整理・検索性向上
-- チーム標準の統一
-
-**使用タイミング**: 毎回のgitコミット前
 
 ### Phase 2: セキュリティ・アーキテクチャ エージェント
 
@@ -118,17 +232,6 @@ Claude Codeでの開発ワークフローを劇的に効率化する専門サブ
 - 学習・継続改善支援
 
 **使用タイミング**: コード実装完了時、機能追加時、バグ修正後
-
-#### 🎨 code-formatter (Haiku)
-
-**専門分野**: コード書式設定
-
-- 多言語対応自動フォーマット
-- markdownlint準拠
-- プロジェクト固有スタイル適用
-- バッチ処理・CI/CD統合
-
-**使用タイミング**: コミット前、コードレビュー前、プロジェクト標準化時
 
 ### Phase 3: 専門特化エージェント
 
@@ -204,6 +307,83 @@ Claude Codeでの開発ワークフローを劇的に効率化する専門サブ
 - クエリパフォーマンス問題解決時
 - データモデリング・マイグレーション計画時
 
+### Phase 4: ビジネス・UXエージェント
+
+#### 📊 business-analyst (Sonnet)
+
+**専門分野**: ビジネス分析・要件定義
+
+**主要機能**:
+
+- ステークホルダー要求分析
+- ビジネスプロセス設計
+- 要件定義書作成
+- ビジネスインパクト評価
+- プロジェクト初期段階の要件整理
+
+**使用タイミング**:
+
+- プロジェクト初期の要件分析時
+- ビジネス要求の整理・体系化時
+- ステークホルダー調整時
+
+#### 📦 product-manager (Sonnet)
+
+**専門分野**: プロダクト企画・プロジェクト管理
+
+**主要機能**:
+
+- 要件仕様開発
+- ロードマップ作成
+- ステークホルダー調整
+- リスク管理
+- プロダクト戦略立案
+- 機能優先度付け
+
+**使用タイミング**:
+
+- プロダクト企画フェーズ
+- ロードマップ策定時
+- 機能設計の事前段階
+
+#### 🏗️ system-architect (Sonnet)
+
+**専門分野**: システムアーキテクチャ設計
+
+**主要機能**:
+
+- 技術選定
+- システム構成設計
+- スケーラビリティ設計
+- セキュリティアーキテクチャ
+- 大規模システム設計
+- 再アーキテクチャ戦略
+
+**使用タイミング**:
+
+- 大規模システム設計フェーズ
+- アーキテクチャ再構築時
+- 技術スタック選定時
+
+#### 🎨 ux-designer (Sonnet)
+
+**専門分野**: UX設計・ユーザビリティ
+
+**主要機能**:
+
+- ユーザーリサーチ
+- UI/UX設計
+- プロトタイプ作成
+- ユーザビリティテスト
+- インタラクションデザイン
+- アクセシビリティ改善
+
+**使用タイミング**:
+
+- プロダクト企画・デザインフェーズ
+- UIコンポーネント設計時
+- ユーザー体験改善時
+
 ## 🚀 セットアップ・使用方法
 
 ### 新規プロジェクトでの導入
@@ -234,47 +414,64 @@ git submodule update --remote
 #### 方法3: 選択的導入
 
 ```bash
-# 特定のエージェントのみ導入
-mkdir -p .claude/agents
+# 特定のエージェント・コマンドのみ導入
+mkdir -p .claude/agents .claude/commands
+
+# スラッシュコマンド（推奨: 全て導入）
+wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/commands/format.md -O .claude/commands/format.md
+wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/commands/commit.md -O .claude/commands/commit.md
+wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/commands/docs.md -O .claude/commands/docs.md
+wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/commands/pr.md -O .claude/commands/pr.md
+wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/commands/issue.md -O .claude/commands/issue.md
 
 # Phase 1: 必須エージェント
 wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/agents/test-generator.md -O .claude/agents/test-generator.md
 wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/agents/bug-analyzer.md -O .claude/agents/bug-analyzer.md
-wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/agents/documentation-generator.md -O .claude/agents/documentation-generator.md
-wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/agents/commit-message-generator.md -O .claude/agents/commit-message-generator.md
 
 # Phase 2: セキュリティ・アーキテクチャ
 wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/agents/security-scanner.md -O .claude/agents/security-scanner.md
 wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/agents/api-designer.md -O .claude/agents/api-designer.md
 wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/agents/refactoring-advisor.md -O .claude/agents/refactoring-advisor.md
 wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/agents/code-reviewer.md -O .claude/agents/code-reviewer.md
-wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/agents/code-formatter.md -O .claude/agents/code-formatter.md
 
 # Phase 3: 専門特化エージェント
 wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/agents/frontend-specialist.md -O .claude/agents/frontend-specialist.md
 wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/agents/backend-specialist.md -O .claude/agents/backend-specialist.md
 wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/agents/performance-analyzer.md -O .claude/agents/performance-analyzer.md
 wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/agents/database-designer.md -O .claude/agents/database-designer.md
+
+# Phase 4: ビジネス・UXエージェント
+wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/agents/business-analyst.md -O .claude/agents/business-analyst.md
+wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/agents/product-manager.md -O .claude/agents/product-manager.md
+wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/agents/system-architect.md -O .claude/agents/system-architect.md
+wget https://raw.githubusercontent.com/glkt3912/claude-code-subagents/main/.claude/agents/ux-designer.md -O .claude/agents/ux-designer.md
 ```
 
-### エージェント配置確認
+### 配置確認
 
 ```bash
+# スラッシュコマンド確認
+ls -la .claude/commands/
+# 以下のファイルが配置されていることを確認
+# - format.md
+# - commit.md
+# - docs.md
+# - pr.md
+# - issue.md
+
+# サブエージェント確認
 ls -la .claude/agents/
 # 以下のファイルが配置されていることを確認
 
-# Phase 1: 必須・高インパクト (4つ)
+# Phase 1: 必須・高インパクト (2つ)
 # - test-generator.md
 # - bug-analyzer.md
-# - documentation-generator.md
-# - commit-message-generator.md
 
-# Phase 2: セキュリティ・アーキテクチャ (5つ)
+# Phase 2: セキュリティ・アーキテクチャ (4つ)
 # - security-scanner.md
 # - api-designer.md
 # - refactoring-advisor.md
 # - code-reviewer.md
-# - code-formatter.md
 
 # Phase 3: 専門特化 (4つ)
 # - frontend-specialist.md
@@ -282,59 +479,93 @@ ls -la .claude/agents/
 # - performance-analyzer.md
 # - database-designer.md
 
-# 合計: 13のエージェント
+# Phase 4: ビジネス・UX (4つ)
+# - business-analyst.md
+# - product-manager.md
+# - system-architect.md
+# - ux-designer.md
+
+# 合計: 14のエージェント + 5つのスラッシュコマンド
 ```
 
 ### Claude Codeでの使用
+
+#### スラッシュコマンド
+
+スラッシュコマンドは `/` で始まるコマンドを入力するだけで利用できます:
+
+```bash
+/format *.md        # Markdownファイルを整形
+/commit             # コミットメッセージ生成
+/docs readme        # README生成
+/pr                 # PR作成
+/issue bug          # バグ報告Issue作成
+```
+
+#### サブエージェント
 
 1. **Claude Codeを起動**
 2. **エージェント確認**: `/agents` コマンドで利用可能なエージェント一覧を確認
 3. **エージェント選択**: `@エージェント名` でエージェントを切り替え
 4. **タスク実行**: 目的に応じたエージェントで作業を実行
 
-### エージェント選択ガイドライン
+### エージェント・コマンド選択ガイドライン
 
-| 開発フェーズ | 推奨エージェント | 目的 |
-|-------------|----------------|------|
-| **プロジェクト設計** | api-designer, database-designer | API設計、データベース設計 |
+| 開発フェーズ | 推奨ツール | 目的 |
+|-------------|-----------|------|
+| **要件定義・企画** | business-analyst, product-manager, ux-designer | ビジネス分析、プロダクト企画、UX設計 |
+| **アーキテクチャ設計** | system-architect, api-designer, database-designer | システム設計、API設計、DB設計 |
 | **実装・開発** | frontend-specialist, backend-specialist | 専門領域特化開発 |
-| **品質管理** | test-generator, code-formatter | テスト作成、コード整形 |
+| **品質管理** | test-generator, `/format` | テスト作成、コード整形 |
 | **デバッグ・分析** | bug-analyzer, performance-analyzer | 問題調査、パフォーマンス分析 |
 | **レビュー・監査** | code-reviewer, security-scanner | コードレビュー、セキュリティ監査 |
 | **最適化・改善** | refactoring-advisor, performance-analyzer | リファクタリング、性能改善 |
-| **ドキュメント** | documentation-generator | 文書作成・更新 |
-| **コミット・管理** | commit-message-generator | Git履歴管理 |
+| **ドキュメント作成** | `/docs` | 文書作成・更新 |
+| **Git管理** | `/commit`, `/pr`, `/issue` | コミット、PR、Issue作成 |
 
 ## 📋 使用例とベストプラクティス
 
 ### 🔄 段階的活用アプローチ
 
-#### ステップ1: 基本エージェントから開始
+#### ステップ1: スラッシュコマンドから開始
 
 ```bash
-# 最初に導入すべきエージェント（Phase 1）
-@test-generator         # テスト自動生成
-@documentation-generator # ドキュメント作成
-@commit-message-generator # コミットメッセージ
+# 最初に導入すべきコマンド（トークン90%削減）
+/format              # コードフォーマット
+/commit              # コミットメッセージ生成
+/docs                # ドキュメント作成
+/pr                  # PR作成（日本語）
+/issue               # Issue作成（日本語）
 ```
 
-#### ステップ2: 品質向上エージェント追加
+#### ステップ2: 基本エージェント追加
+
+```bash
+# テスト・デバッグ支援（Phase 1）
+@test-generator      # テスト自動生成
+@bug-analyzer        # バグ解析
+```
+
+#### ステップ3: 品質向上エージェント追加
 
 ```bash
 # コード品質向上のため（Phase 2）
-@code-reviewer         # コードレビュー
-@security-scanner      # セキュリティ監査
-@code-formatter       # コード整形
+@code-reviewer       # コードレビュー
+@security-scanner    # セキュリティ監査
 ```
 
-#### ステップ3: 専門特化エージェント活用
+#### ステップ4: 専門特化エージェント活用
 
 ```bash
-# プロジェクトの特性に応じて（Phase 3）
+# プロジェクトの特性に応じて（Phase 3 & 4）
 @frontend-specialist   # フロントエンド特化
 @backend-specialist    # バックエンド特化
 @performance-analyzer  # パフォーマンス分析
 @database-designer     # データベース設計
+@business-analyst      # ビジネス分析
+@product-manager       # プロダクト企画
+@system-architect      # システムアーキテクチャ
+@ux-designer          # UX設計
 ```
 
 ### 🎯 エージェント組み合わせパターン
@@ -342,21 +573,29 @@ ls -la .claude/agents/
 #### Web アプリケーション開発
 
 ```text
+要件定義フェーズ:
+1. @business-analyst → ビジネス要求分析
+2. @product-manager → プロダクト企画
+3. @ux-designer → UX設計
+
 設計フェーズ:
-1. @api-designer → API設計
-2. @database-designer → データモデル設計
-3. @documentation-generator → API仕様書作成
+1. @system-architect → アーキテクチャ設計
+2. @api-designer → API設計
+3. @database-designer → データモデル設計
+4. /docs → API仕様書作成
 
 実装フェーズ:
 1. @frontend-specialist → UI/UXコンポーネント開発
 2. @backend-specialist → サーバーサイド実装
 3. @test-generator → テストケース作成
+4. /format → コード整形
 
 品質保証フェーズ:
-1. @code-formatter → コード整形
-2. @code-reviewer → コードレビュー
-3. @security-scanner → セキュリティ監査
-4. @performance-analyzer → パフォーマンステスト
+1. @code-reviewer → コードレビュー
+2. @security-scanner → セキュリティ監査
+3. @performance-analyzer → パフォーマンステスト
+4. /commit → コミット作成
+5. /pr → Pull Request作成
 ```
 
 #### モバイルアプリ開発
@@ -369,6 +608,44 @@ ls -la .claude/agents/
 ```
 
 ### 🎨 各エージェント活用例
+
+#### スラッシュコマンドの活用例
+
+**`/format` コマンド**:
+
+```bash
+/format *.md                    # Markdownファイルを整形
+/format src/                    # srcディレクトリを整形
+/format                         # プロジェクト全体を整形
+```
+
+**`/commit` コマンド**:
+
+```bash
+/commit                         # staged changesから自動生成
+```
+
+**`/docs` コマンド**:
+
+```bash
+/docs readme                    # README.md作成
+/docs api user-service          # API文書生成
+/docs guide setup               # セットアップガイド作成
+```
+
+**`/pr` コマンド**:
+
+```bash
+/pr                            # mainブランチへのPR作成
+/pr develop                    # developブランチへのPR作成
+```
+
+**`/issue` コマンド**:
+
+```bash
+/issue bug                     # バグ報告Issue作成
+/issue feature                 # 機能要望Issue作成
+```
 
 #### Phase 1: 基本エージェント
 
@@ -383,19 +660,6 @@ ls -la .claude/agents/
 
 # モックオブジェクト生成
 "この API クライアントクラスの Jest テストを作成し、適切なモック設定も含めてください"
-```
-
-**documentation-generator の活用例**:
-
-```text
-# README作成
-"このプロジェクトの README.md を作成してください。セットアップ手順と使用例も含めて"
-
-# API ドキュメント生成
-"この Express.js API の OpenAPI 3.0 仕様書を生成してください"
-
-# コードコメント追加
-"この関数に JSDoc コメントを追加してください。パラメータと戻り値の説明も含めて"
 ```
 
 #### Phase 2: 品質向上エージェント
@@ -518,44 +782,51 @@ jobs:
 # .git/hooks/pre-commit
 #!/bin/sh
 
-# コード整形
+# コード整形（スラッシュコマンド使用）
 echo "Running code formatter..."
-claude-code @code-formatter "プロジェクト全体のコードを整形してください"
+claude-code /format
 
-# コミットメッセージ生成
+# コミットメッセージ生成（スラッシュコマンド使用）
 echo "Generating commit message..."
-COMMIT_MSG=$(claude-code @commit-message-generator "git diff --cached の内容からコミットメッセージを生成してください")
-
-echo "$COMMIT_MSG" > .git/COMMIT_EDITMSG
+claude-code /commit
 ```
 
 ### 👥 チーム開発ワークフロー
 
-#### エージェント役割分担例
+#### エージェント・コマンド役割分担例
 
 ```text
+ビジネス・企画:
+- @business-analyst: ビジネス要求分析
+- @product-manager: プロダクト企画
+- @ux-designer: UX設計
+
 設計担当者:
+- @system-architect: アーキテクチャ設計
 - @api-designer: API仕様策定
 - @database-designer: データモデル設計
-- @documentation-generator: 設計書作成
+- /docs: 設計書作成
 
 フロントエンド開発者:
 - @frontend-specialist: UI/UX実装
 - @test-generator: フロントエンドテスト
 - @performance-analyzer: 描画性能最適化
+- /format: コード整形
 
 バックエンド開発者:
 - @backend-specialist: サーバーサイド実装
 - @database-designer: クエリ最適化
 - @security-scanner: API セキュリティ
+- /format: コード整形
 
 DevOps エンジニア:
 - @performance-analyzer: インフラ監視
 - @security-scanner: システム監査
-- @code-formatter: CI/CD 統合
 
 全員共通:
-- @commit-message-generator: Git 履歴管理
+- /commit: Git 履歴管理
+- /pr: Pull Request作成
+- /issue: Issue作成
 - @code-reviewer: プルリクエストレビュー
 ```
 
@@ -566,27 +837,30 @@ DevOps エンジニア:
 | メトリクス | 目標改善率 | 測定方法 |
 |-----------|-----------|---------|
 | **テスト作成時間** | 70%短縮 | @test-generator使用前後の時間計測 |
-| **ドキュメント作成時間** | 80%短縮 | @documentation-generator使用前後 |
+| **ドキュメント作成時間** | 80%短縮 | /docs コマンド使用前後 |
 | **デバッグ時間** | 50%短縮 | @bug-analyzer使用による問題解決時間 |
 | **コードレビュー時間** | 40%短縮 | @code-reviewer事前チェック効果 |
 | **リファクタリング時間** | 60%短縮 | @refactoring-advisor提案の活用効果 |
+| **Git操作時間** | 90%短縮 | /commit, /pr, /issue コマンド使用 |
 
 ### コード品質改善
 
-| メトリクス | 目標改善 | 専門エージェント |
-|-----------|--------|----------------|
+| メトリクス | 目標改善 | 専門ツール |
+|-----------|--------|-----------|
 | **セキュリティ脆弱性** | 90%削減 | @security-scanner |
 | **パフォーマンス問題** | 80%削減 | @performance-analyzer |
-| **コード規約違反** | 95%削減 | @code-formatter |
+| **コード規約違反** | 95%削減 | /format コマンド |
 | **バグ発生率** | 60%削減 | @test-generator + @bug-analyzer |
 | **技術的負債** | 70%削減 | @refactoring-advisor |
 
 ### チーム生産性向上
 
-| メトリクス | 目標改善 | 対象エージェント |
-|-----------|--------|----------------|
-| **新規メンバー教育時間** | 50%短縮 | @documentation-generator |
-| **コミット履歴品質** | 100%向上 | @commit-message-generator |
+| メトリクス | 目標改善 | 対象ツール |
+|-----------|--------|-----------|
+| **新規メンバー教育時間** | 50%短縮 | /docs コマンド |
+| **コミット履歴品質** | 100%向上 | /commit コマンド |
+| **PR作成効率** | 80%向上 | /pr コマンド（日本語） |
+| **Issue管理品質** | 90%向上 | /issue コマンド（日本語） |
 | **コードレビュー品質** | 80%向上 | @code-reviewer |
 | **知識共有効率** | 60%向上 | 専門特化エージェント群 |
 
