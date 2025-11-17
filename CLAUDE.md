@@ -20,8 +20,15 @@
 
 This project includes custom slash commands for common development tasks:
 
+### Code Quality & Documentation
+
 - `/format` - Format code with language-specific rules and markdownlint compliance
 - `/commit` - Generate conventional commit messages from staged changes
 - `/docs` - Create structured documentation following project standards
+
+### GitHub Integration (Japanese)
+
+- `/pr` - Create GitHub Pull Request with Japanese template (analyzes changes and generates appropriate PR description)
+- `/issue` - Create GitHub Issue in Japanese (supports both bug reports and feature requests)
 
 Use `/help` to see all available commands.
